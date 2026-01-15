@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="images/favicon.png">
 <!-- Tailwind cdn -->
 <link href="https://cdn.jsdelivr.net/npm/daisyui@3.5.1/dist/full.css" rel="stylesheet" type="text/css" />
 <script src="https://cdn.tailwindcss.com"></script>
@@ -12,48 +14,59 @@
   <script src="https://kit.fontawesome.com/c681ce1328.js" crossorigin="anonymous"></script>
 </head>
 <body>
-
-    <h1 class="font-bold text-4xl text-center mt-32 mb-20">Weather App by CodeWithIftekhar</h1>
+	<!-- toggle -->
+	<div class="fixed top-4 right-4 z-50">
+		<label class="swap swap-rotate">
+		<input type="checkbox" id="theme-toggle" />
+		<svg class="swap-off fill-current w-7 h-7 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  			<path d="M12 4.5a1 1 0 0 1 1 1V7a1 1 0 1 1-2 0V5.5a1 1 0 0 1 1-1ZM12 17a1 1 0 0 1 1 1v1.5a1 1 0 1 1-2 0V18a1 1 0 0 1 1-1ZM4.5 12a1 1 0 0 1 1-1H7a1 1 0 1 1 0 2H5.5a1 1 0 0 1-1-1ZM17 12a1 1 0 0 1 1-1h1.5a1 1 0 1 1 0 2H18a1 1 0 0 1-1-1ZM6.34 6.34a1 1 0 0 1 1.42 0l1.06 1.06a1 1 0 1 1-1.42 1.42L6.34 7.76a1 1 0 0 1 0-1.42ZM15.18 15.18a1 1 0 0 1 1.42 0l1.06 1.06a1 1 0 1 1-1.42 1.42l-1.06-1.06a1 1 0 0 1 0-1.42ZM6.34 17.66a1 1 0 0 1 0-1.42l1.06-1.06a1 1 0 0 1 1.42 1.42l-1.06 1.06a1 1 0 0 1-1.42 0ZM15.18 8.82a1 1 0 0 1 0-1.42l1.06-1.06a1 1 0 1 1 1.42 1.42l-1.06 1.06a1 1 0 0 1-1.42 0ZM12 9a3 3 0 1 1 0 6a3 3 0 0 1 0-6Z"/>
+		</svg>
+		<svg class="swap-on fill-current w-7 h-7 text-indigo-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+			<path d="M21.64,13a1,1,0,0,0-1.05-.14A8.05,8.05,0,0,1,9.14,3.41a1,1,0,0,0-1.19-1.19A10,10,0,1,0,21.64,13Z"/>
+		</svg>
+		</label>
+	</div>
+	<h1 class="fixed bottom-4 right-4 italic text-sm text-gray-600 opacity-70">Weather App by CodeWithIftekhar</h1>
     <!-- component -->
-<div class=" flex items-center justify-center  ">
-        <div class="flex flex-col bg-white rounded p-4 w-full max-w-sm shadow-xl">
+	<div class=" flex items-center justify-center min-h-screen">
+        <div class="flex flex-col rounded-xl p-6 w-full max-w-sm shadow-[0_0_40px_rgba(99,102,241,0.35)] border border-indigo-200">
 			<div class="flex ">
 				<input id="city-name-input" type="text" placeholder="Enter City Name" class="input input-bordered  w-full max-w-xs mb-6" />
 			<button id="search-btn" type="submit" class="btn"><i class="fa-solid fa-magnifying-glass"></i></button>
 			</div>
-						<div id="city-name" class="font-bold text-xl">Sydney</div>
-						<div id="date" class="text-sm text-gray-500">Thursday 10 May 2020</div>
-						<div class="mt-6 text-6xl self-center inline-flex items-center justify-center rounded-lg text-indigo-400 h-24 w-24">
-                <svg class="w-32 h-32" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path></svg>
+			<div id="city-name" class="font-bold text-xl">Sydney</div>
+				<div id="date" class="text-sm text-gray-500">Thursday 10 May 2020</div>
+				<div class="mt-6 text-6xl self-center inline-flex items-center justify-center rounded-lg text-indigo-400 h-24 w-24">
+					<svg class="w-32 h-32" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path></svg>
+				</div>
+				<div class="flex flex-row items-center justify-center mt-6">
+					<div id="temp" class="font-medium text-6xl">24</div>
+					<div class="flex flex-col items-center ml-6">
+						<div id="weather-status">Cloudy</div>
+						<div class="mt-1">
+							<span class="text-sm"><i class="fa-solid fa-arrow-up-long"></i></span>
+							<span id="temp-max" class="text-sm font-light text-gray-500">28°C</span>
 						</div>
-						<div class="flex flex-row items-center justify-center mt-6">
-							<div id="temp" class="font-medium text-6xl">24</div>
-							<div class="flex flex-col items-center ml-6">
-								<div id="weather-status">Cloudy</div>
-								<div class="mt-1">
-									<span class="text-sm"><i class="fa-solid fa-arrow-up-long"></i></span>
-									<span id="temp-max" class="text-sm font-light text-gray-500">28°C</span>
-								</div>
-								<div>
-									<span class="text-sm"><i class="fa-solid fa-arrow-down-long"></i></span>
-									<span id="temp-min" class="text-sm font-light text-gray-500">20°C</span>
-								</div>
-							</div>
+						<div>
+							<span class="text-sm"><i class="fa-solid fa-arrow-down-long"></i></span>
+							<span id="temp-min" class="text-sm font-light text-gray-500">20°C</span>
 						</div>
-						<div class="flex flex-row justify-between mt-6">
-							<div class="flex flex-col items-center">
-								<div class="font-medium text-sm">Wind</div>
-								<div id="wind" class="text-sm text-gray-500">9k/h</div>
-							</div>
-							<div class="flex flex-col items-center">
-								<div class="font-medium text-sm">Humidity</div>
-								<div id="humidity" class="text-sm text-gray-500">68%</div>
-							</div>
-							<div class="flex flex-col items-center">
-								<div class="font-medium text-sm">Visibility</div>
-								<div id="visibility" class="text-sm text-gray-500">10km</div>
-							</div>
-						</div>
+				</div>
+			</div>
+		<div class="flex flex-row justify-between mt-6">
+			<div class="flex flex-col items-center">
+				<div class="font-medium text-sm">Wind</div>
+				<div id="wind" class="text-sm text-gray-500">9k/h</div>
+			</div>
+			<div class="flex flex-col items-center">
+				<div class="font-medium text-sm">Humidity</div>
+				<div id="humidity" class="text-sm text-gray-500">68%</div>
+			</div>
+			<div class="flex flex-col items-center">
+				<div class="font-medium text-sm">Visibility</div>
+				<div id="visibility" class="text-sm text-gray-500">10km</div>
+			</div>
+		</div>
 	</div>
 </div>
 
